@@ -1,0 +1,63 @@
+[data-role="page"] {
+    display: none;
+}
+.xls-drop-area {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    border: 1px solid #ddd;
+    color: #999;
+    font-size: 2em;
+}
+.dragging {
+    color: #000;
+    border-color: #000;
+}
+h2, .weekly-title {
+    font-size: 1.2em;
+}
+.weekly-category {
+    display: block;
+}
+.weekly-day-of-the-week {
+    font-size: 0.9em;
+    color: #999;
+}
+.transfer-item {
+    display: none;
+}
+input[type=date] {
+    -webkit-appearance: none;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.nav-wrapper {
+    padding-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.auto-complete-box {
+    display: none;
+}
+
+.auto-complete-box__candidate {
+    padding: 0.5em;
+}
+
+.lang-ko,
+.lang-en {
+    display: none;
+}
+
+body.body-lang-ko .lang-ko,
+body.body-lang-en .lang-en {
+    display: block;
+}
+.plain-a, .plain-a:hover {
+    text-decoration: none;
+    color: #333;
+}
+
+.date-nav {
+    margin-bottom: 1em;
+}

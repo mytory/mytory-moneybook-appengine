@@ -1,0 +1,115 @@
+<div class="page-account-list" role="page">
+    <div class="page-header">
+        <h1>
+            <a href="#account/list">
+                <%= polyglot.t('Account Setting') %>
+            </a>
+            <%= account.get('name') ? '<small>' +  account.get('name') + '</small>': ''%>
+        </h1>
+    </div>
+    <% if(account_balance !== null){ %>
+        <div class="panel panel-<%= account_balance >= 0 ? 'success' : 'danger' %>">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <%= polyglot.t('Account Balance:') %>
+                    <span class="pull-right"><%= MMB.util.number_format(account_balance) %></span>
+                </h3>
+            </div>
+        </div>
+    <% } %>
+    <form role="form" class="js-account-update-form">
+        <input name="id" type="hidden" value="<%= account.getId() %>"/>
+        <div class="form-group">
+            <label for="name"><%= polyglot.t('Account') %> <%= polyglot.t('Name') %></label>
+            <input required class="form-control" type="text" name="name" id="name" value="<%= account.get('name') %>"/>
+        </div>
+        <div class="form-group">
+            <label>
+                <%= polyglot.t('Account') %> <%= polyglot.t('Owner') %>
+            </label>
+            <div class="radio">
+                <label>
+                    <input required type="radio" name="owner" id="owner_mine" value="mine"
+                            <%= account.get('owner') == 'mine' ? 'checked' : '' %> />
+                    <%= polyglot.t('mine') %>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input required type="radio" name="owner" id="owner_others" value="others"
+                            <%= account.get('owner') == 'others' ? 'checked' : '' %> />
+                    <%= polyglot.t('others') %>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>
+                <%= polyglot.t('Is in Balance') %>
+            </label>
+            <div class="radio">
+                <label>
+                    <input required type="radio" name="in_balance" id="in_balance_yes" value="yes"
+                            <%= account.get('in_balance') == 'yes' ? 'checked' : '' %> />
+                    <%= polyglot.t('yes') %>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input required type="radio" name="in_balance" id="in_balance_no" value="no"
+                            <%= account.get('in_balance') == 'no' ? 'checked' : '' %>/>
+                    <%= polyglot.t('no') %>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>
+                <%= polyglot.t('Whether savings') %>
+            </label>
+            <div class="radio">
+                <label>
+                    <input required type="radio" name="whether_savings" id="whether_savings_yes" value="yes"
+                    <%= account.get('whether_savings') == 'yes' ? 'checked' : '' %> />
+                    <%= polyglot.t('Savings') %>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input required type="radio" name="whether_savings" id="whether_savings_no" value="no"
+                    <%= account.get('whether_savings') == 'no' ? 'checked' : '' %>/>
+                    <%= polyglot.t('Not savings') %>
+                </label>
+            </div>
+        </div>
+        <input class="btn btn-primary btn-block" type="submit" value="<%= polyglot.t('Save') %>"/>
+    </form>
+
+    <hr/>
+
+    <h2>일괄 이동</h2>
+    <p>이 계좌의 아이템을 모두 다른 계좌로 이동합니다.</p>
+
+    <form role="form" class="js-move-to-account-form">
+        <input name="id" type="hidden" value="<%= account.getId() %>"/>
+        <div class="form-group">
+            <label for="account">이동 대상 계좌</label>
+            <input class="form-control js-filter-candidates js-move-to-account" type="text" name="account" id="account"/>
+            <div class="auto-complete-box clearfix" data-key="account"></div>
+        </div>
+        <p>
+            <input class="btn btn-block btn-default" type="submit" value="<%= polyglot.t('Move') %>"/>
+        </p>
+    </form>
+
+    <hr/>
+
+    <h2 class="text-right">삭제</h2>
+    <p class="pull-right">
+        <a class="btn btn-danger js-account-delete" href="#"
+                data-id="<%= account.getId() %>">
+            <span class="glyphicon glyphicon-remove"></span>
+            '<%= account.get('name') %>' <%=polyglot.t('Account')%> <%=polyglot.t('Delete')%>
+        </a>
+    </p>
+</div>
